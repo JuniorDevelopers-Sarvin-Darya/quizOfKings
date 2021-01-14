@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.Socket;
+
 public class RegisterViaLoginActivity extends AppCompatActivity {
     private EditText userNameEditText;
     private EditText passwordEditText;
@@ -17,6 +21,7 @@ public class RegisterViaLoginActivity extends AppCompatActivity {
     private TextView passwordError;
     private TextView confirmPasswordError;
     private Button okBtn;
+    private String task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,11 @@ public class RegisterViaLoginActivity extends AppCompatActivity {
         passwordError = findViewById(R.id.invalidPasswordModified);
         confirmPasswordError = findViewById(R.id.invalidRepeatPassword);
         okBtn = findViewById(R.id.ok_btn);
+
+        Bundle bundle = getIntent().getExtras();
+        task = bundle.getString("work");
+
+
         passwordEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,18 +76,73 @@ public class RegisterViaLoginActivity extends AppCompatActivity {
 
     }
 
-    private boolean isValidPasswordConfirmation(String toString, String toString1) {
-        return true;//todo
+
+
+    private boolean validation(String kind, String value)
+    {
+        try {
+            Validation validation = new Validation(kind, value);
+            Thread thread = new Thread(validation);
+            thread.start();
+            thread.join();
+            return validation.getResult();
+        }catch (Exception e)
+        {
+
+        }
+        return false;
     }
 
     private boolean isValidUserName(String username) {
-        return true;//todo
+        return validation("username", username);
 
     }
 
     private boolean isValidPassword(String password) {
-        return true;//todo
+        return validation("password", password);
+    }
+    private boolean isValidPasswordConfirmation(String password1, String password2) {
+        return validation("confirmPassword", password1 + "@" + password2);
     }
 
+
+
+    private class Validation implements Runnable
+    {
+        private Socket s;
+        private DataInputStream dis;
+        private DataOutputStream dos;
+        private String value;
+        private String kind;
+        private boolean result;
+
+        public Validation(String kind, String value)
+        {
+            this.kind = kind;
+            this.value = value;
+            this.result = false;
+        }
+        @Override
+        public void run() {
+            try {
+                s = new Socket("10.0.2.2", 1212);
+                dis = new DataInputStream(s.getInputStream());
+                dos = new DataOutputStream(s.getOutputStream());
+                dos.writeUTF(kind + " " + value);
+                String serverResponse = dis.readUTF();
+                if(serverResponse.equals("true"))
+                    result = true;
+
+
+            }catch (Exception e)
+            {
+
+            }
+        }
+        public boolean getResult()
+        {
+            return result;
+        }
+    }
 
 }
