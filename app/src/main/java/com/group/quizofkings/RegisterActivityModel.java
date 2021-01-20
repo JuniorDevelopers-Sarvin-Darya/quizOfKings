@@ -1,6 +1,7 @@
 package com.group.quizofkings;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
@@ -23,6 +24,8 @@ public class RegisterActivityModel
         return true;
     }
 
+    public void sendRequestToCreateUser(String username, String password) {
+    }
 }
 class VerifyUsername implements Runnable
 {
@@ -36,8 +39,13 @@ class VerifyUsername implements Runnable
         try {
             Socket s = new Socket("10.0.2.2", 1212);
             ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
-            oos.writeUTF(username);
+            ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+            oos.writeUTF("username_validation " + username);
             oos.flush();
+            String response = ois.readUTF();
+            if(response.equals("true"))
+                System.out.println("finished with exit code 0! :)");
+            System.out.println("finished");
         } catch (IOException e) {
             e.printStackTrace();
         }

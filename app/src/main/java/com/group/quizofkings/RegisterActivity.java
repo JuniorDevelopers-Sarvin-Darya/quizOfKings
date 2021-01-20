@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if(model.confirmUsername(username) && model.confirmPassword(password) &&
                 model.confirmPasswordConfirmation(password, passwordConfirm))
                 {
-//                    model.sendRequestToCreateUser(username, password);
+                    model.sendRequestToCreateUser(username, password);
                     Intent intent = new Intent(RegisterActivity.this, GameActivity.class);
                     intent.putExtra("work", "register_user" + " " + username);
                     startActivity(intent);
