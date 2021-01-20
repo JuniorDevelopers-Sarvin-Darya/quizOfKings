@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QuizOFKings</string>
+    <string name="register_page">RegisterPage</string>
+    <string name="password_confirm">PasswordConfirmation</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+</resources>
