@@ -59,6 +59,7 @@ public class ServerModel {
                 while(true) {
                     String req = ois.readUTF();
                     System.out.println("client says: " + req);
+                    ois.close();
                     if (req.equals("exit")) {
                         break;
                     }
