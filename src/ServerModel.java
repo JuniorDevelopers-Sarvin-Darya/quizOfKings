@@ -12,6 +12,7 @@ public class ServerModel {
     private static ObjectInputStream ois;
     private static ObjectOutputStream oos;
     private static ArrayList<User> users = new ArrayList();
+    private static ArrayList<Game> games = new ArrayList<>();
 
     public ServerModel() {
 
