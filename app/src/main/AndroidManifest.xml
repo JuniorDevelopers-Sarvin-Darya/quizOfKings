@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartGameActivity"></activity>
+        <activity android:name=".QuestionLoaderActivity"></activity>
+        <activity android:name=".StartGameActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
