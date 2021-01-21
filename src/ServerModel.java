@@ -31,8 +31,9 @@ public class ServerModel {
 
     private static void getUserList() {
         Scanner scanner = new Scanner("Files\\user_file.txt");
-
         while(scanner.hasNextLine()) {
+            if(scanner.nextLine().equals(""))
+                return;
             String userInfo = scanner.nextLine();
             String[] userSplit = userInfo.split(" ");
             String username = userSplit[0];
@@ -48,6 +49,7 @@ public class ServerModel {
         try {
             serverSocket = new ServerSocket(1212);
 
+
             while(true) {
                 client = serverSocket.accept();
                 System.out.println("new client connected");
@@ -60,12 +62,15 @@ public class ServerModel {
                     if (req.equals("exit")) {
                         break;
                     }
-
                     ServerHandler.handle(req, oos);
                 }
             }
         } catch (Exception var1) {
             System.out.println("an error was found");
         }
+    }
+
+    public static ArrayList<User> getUsers() {
+        return users;
     }
 }

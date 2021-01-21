@@ -28,4 +28,9 @@ public class User {
     public boolean playsInfinity() {
         return this.playsInfinity;
     }
+
+    public String getUsername()
+    {
+        return username;
+    }
 }
