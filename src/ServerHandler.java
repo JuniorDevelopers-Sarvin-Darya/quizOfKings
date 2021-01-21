@@ -22,7 +22,6 @@ public class ServerHandler
                                     oos.writeUTF("true");
                                 else
                                     oos.writeUTF("false");
-                                oos.flush();
                             }catch (Exception e)
                             {
                                 e.printStackTrace();

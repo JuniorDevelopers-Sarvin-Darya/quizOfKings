@@ -75,4 +75,8 @@ public class ServerModel {
     public static ArrayList<User> getUsers() {
         return users;
     }
+    public static ArrayList<Game> getGames()
+    {
+        return games;
+    }
 }
