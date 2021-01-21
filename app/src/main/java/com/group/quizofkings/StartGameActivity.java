@@ -24,7 +24,7 @@ public class StartGameActivity extends AppCompatActivity {
         turnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(model.isSelfTurn)
+                if(model.isSelfTurn())
                 {
                     Intent questionsIntent = new Intent(StartGameActivity.this, QuestionLoaderActivity.class);
                     startActivity(questionsIntent);

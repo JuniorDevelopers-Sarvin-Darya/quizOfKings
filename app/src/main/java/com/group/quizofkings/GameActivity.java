@@ -29,6 +29,12 @@ public class GameActivity extends AppCompatActivity {
                 if(model.isAligible(username))
                 {
                     Object user = model.getUser();
+                    PersonModel[] activeModels = model.getActiveGames(user);
+                    PersonModel[] passiveModels = model.getPassiveGames(user);
+                    GameAdaptor active = new GameAdaptor(activeModels);
+                    GameAdaptor passive = new GameAdaptor(passiveModels);
+                    activeGamesRView.setAdapter(active);
+                    passiveGamesRView.setAdapter(passive);
                     startRandomGame(user);
                 }
             }

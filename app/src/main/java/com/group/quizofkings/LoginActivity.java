@@ -1,21 +1,19 @@
 package com.group.quizofkings;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.net.InetAddress;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText usernameEditText;
     private EditText passwordEditText;
     private EditText passwordConfirmationEditText;
     private Button loginCompleteBtn;
-    private LoginActivityModel model;
+    private LoginActivityModel model = new LoginActivityModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
                 model.isValidPasswordConfirmation(passwordConfirmationEditText.getText().toString(), passwordEditText.getText().toString()))
                 {
                     Intent intent = new Intent(LoginActivity.this, GameActivity.class);
-
+                    intent.putExtra("username", usernameEditText.getText().toString());
                     startActivity(intent);
                 }
             }
