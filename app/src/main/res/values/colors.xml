@@ -9,5 +9,6 @@
     <color name="colorDarkBlue">#304FFE</color>
     <color name="colorYellow">#FFD600</color>
     <color name="colorPrimary">#FFFFFF</color>
-
+    <color name="colorPink">#C51162</color>
+    <color name="colorLightPink">#D62F94</color>
 </resources>

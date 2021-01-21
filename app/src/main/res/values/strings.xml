@@ -4,4 +4,5 @@
     <string name="password_confirm">PasswordConfirmation</string>
     <string name="password">Password</string>
     <string name="name">Name</string>
+    <string name="loginpage">loginPage</string>
 </resources>
